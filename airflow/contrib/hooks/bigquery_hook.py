@@ -2254,7 +2254,7 @@ def _api_resource_configs_duplication_check(key, value, config_dict,
 
 
 def _validate_src_fmt_configs(source_format, src_fmt_configs, valid_configs,
-                              backward_compatibility_configs={}):
+                              backward_compatibility_configs=None):
     """
     Validates the given src_fmt_configs against a valid configuration for the source format.
     Adds the backward compatiblity config to the src_fmt_configs.
@@ -2268,6 +2268,9 @@ def _validate_src_fmt_configs(source_format, src_fmt_configs, valid_configs,
     :param backward_compatibility_configs: The top-level params for backward-compatibility
     :type backward_compatibility_configs: dict
     """
+
+    if backward_compatibility_configs is None:
+        backward_compatibility_configs = {}
 
     for k, v in backward_compatibility_configs.items():
         if k not in src_fmt_configs and k in valid_configs:
